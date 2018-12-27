@@ -26,12 +26,12 @@ app.use('/api', api);
 
 //  ADDED CODE
 //  Test mongoose connection
-mongoose.connect('mongodb://127.0.0.1:27017/todoapp', { useNewUrlParser: true})
+mongoose.connect('mongodb://127.0.0.1:27017/madlibs', { useNewUrlParser: true})
 .then(() => {
-  console.log(`Successfully Connected to the Mongodb Database at URL :mongodb://127.0.0.1:27017/todoapp`)
+  console.log(`Successfully Connected to the Mongodb Database at URL :mongodb://127.0.0.1:27017/madlibs`)
 })
 .catch(() => {
-  console.log('Error connecting to the Mongodb Database at URL :mongodb://127.0.0.1:27017/todoapp')
+  console.log('Error connecting to the Mongodb Database at URL :mongodb://127.0.0.1:27017/madlibs')
 })
 // CORS Usage
 app.use(function(req, res, next) {

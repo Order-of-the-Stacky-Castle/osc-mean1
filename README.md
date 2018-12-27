@@ -4,9 +4,9 @@
 - Rule #2 - Create new branches from the `dev` branch.
 - Do not blindly `merge` to the `dev` branch.  Please initiate a `pull`/`review` and get confirmation before merging.
 
-# TTS/DevOps Bootcamp - Team Project 01
-## [The Spoon](https://the-spoon.herokuapp.com/)
-A Recipe Sharing Web App - [https://the-spoon.herokuapp.com/](https://the-spoon.herokuapp.com/)
+# TTS/DevOps Bootcamp - Team Project 02
+## [T.B.D.](#)
+An APP T.B.D. - [DEPLOYED APP](#)
 ## Team Members
 - Jason Byer
 - Thomas Weldon
@@ -34,4 +34,4 @@ T.B.D.
 ## Data Models and Attributes
 T.B.D.
 ## Aknowledgements
-Team DSB would like to thank [Tech Talent South](https://www.techtalentsouth.com) and [Cognizant](https://www.cognizant.com) for comming together to give us the great opportunity to learn and grow.  We also want to thank our istructors [Eric Shwartz](https://github.com/erics273) and [Leslie Alvarado](https://github.com/lealvarado) for guiding us to this poing.  We look forward to what the following weeks and months bring.
+Team OSC would like to thank [Tech Talent South](https://www.techtalentsouth.com) and [Cognizant](https://www.cognizant.com) for comming together to give us the great opportunity to learn and grow.  We also want to thank our istructors [Eric Shwartz](https://github.com/erics273) and [Leslie Alvarado](https://github.com/lealvarado) for guiding us to this poing.  We look forward to what the following weeks and months bring.

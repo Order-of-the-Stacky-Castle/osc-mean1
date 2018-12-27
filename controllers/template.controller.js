@@ -18,16 +18,16 @@ exports.getTemplates = async function (req, res, next) {
 
   try {
 
-    var todos = await TemplateService.getTemplates({}, page, limit)
+    var templates = await TemplateService.getTemplates({}, page, limit)
 
-    // Return the todos list with the appropriate 
+    // Return the Template list with the appropriate 
     //HTTP Status Code and Message.
 
     return res
       .status(200)
       .json({
         status: 200,
-        data: todos,
+        data: templates,
         message: "Succesfully Recieved Templates"
       });
 

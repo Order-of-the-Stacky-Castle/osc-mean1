@@ -62,7 +62,6 @@ exports.createStory = async function (story) {
 
 exports.updateStory = async function (story) {
     var id = story._id;
-
     try {
         //Find the old template Object by the Id
 
@@ -77,18 +76,17 @@ exports.updateStory = async function (story) {
         return false;
     }
 
-    console.log(oldStory)
+    console.log(oldStory);
 
     //Edit the template Object
 
     oldStory.template_id = story.template_id;
     oldStory.words = story.words;
 
-    console.log(oldStory)
+    console.log(oldStory);
 
     try {
-        var savedStory = await oldStory.save()
-        return savedStory;
+        return await oldStory.updateOne(story);
     } catch (e) {
         throw Error("And Error occured while updating the story");
     }

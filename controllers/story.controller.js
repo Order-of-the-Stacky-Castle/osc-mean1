@@ -80,19 +80,20 @@ exports.updateStory = async function (req, res, next) {
 
     // Id is necessary for the update
 
-    if (!req.body._id) {
+    if (!req.params.id) {
         return res.status(400).json({
             status: 400.,
             message: "Id must be present"
         })
     }
 
-    var id = req.body._id;
+    var id = req.params.id;
 
-    console.log(req.body)
+    console.log(req.params);
 
     var story = {
-        template_id,
+        _id: id,
+        template_id: req.body.template_id ? req.body.template_id : null,
         words: req.body.words ? req.body.words : null
     };
 

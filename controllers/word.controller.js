@@ -1,14 +1,14 @@
 // We need to be able to access the Service 
 //that we just created so let's pull that in
 
-var TodoService = require('../services/todo.service.js');
+var WordService = require('../services/word.service.js');
 
 // Make sure to save the context of 
 //this module inside the _this variable
 
 _this = this
 
-exports.getTodos = async function (req, res, next) {
+exports.getWords = async function (req, res, next) {
 
   // We're going to use ternary to check 
   //the existence of the query parameters
@@ -18,17 +18,17 @@ exports.getTodos = async function (req, res, next) {
 
   try {
 
-    var todos = await TodoService.getTodos({}, page, limit)
+    var words = await WordService.getWords({}, page, limit)
 
-    // Return the todos list with the appropriate 
+    // Return the words list with the appropriate 
     //HTTP Status Code and Message.
 
     return res
       .status(200)
       .json({
         status: 200,
-        data: todos,
-        message: "Succesfully Recieved Todos"
+        data: words,
+        message: "Succesfully Received Words"
       });
 
   } catch (e) {
@@ -44,14 +44,15 @@ exports.getTodos = async function (req, res, next) {
   }
 }
 
-exports.createTodo = async function (req, res, next) {
+exports.createWord = async function (req, res, next) {
 
   // Note: Req.Body contains the form submit values.
 
-  var todo = {
-    title: req.body.title,
-    description: req.body.description,
-    status: req.body.status
+  var word = {
+    word: req.body.word,
+    type: req.body.type,
+    plural: req.body.plural,
+    profane: req.body.profane
   }
 
   try {
@@ -59,11 +60,11 @@ exports.createTodo = async function (req, res, next) {
     // Calling the Service function 
     //with the new object from the Request Body
 
-    var createdTodo = await TodoService.createTodo(todo)
+    var createdWord = await WordService.createWord(word)
     return res.status(201).json({
       status: 201,
-      data: createdTodo,
-      message: "Succesfully Created ToDo"
+      data: createdWord,
+      message: "Succesfully Created Word"
     })
   } catch (e) {
 
@@ -72,12 +73,12 @@ exports.createTodo = async function (req, res, next) {
 
     return res.status(400).json({
       status: 400,
-      message: "Todo Creation was Unsuccesfull, I am sorry :( "
+      message: "Word Creation was Unsuccesfull, I am sorry :( "
     })
   }
 }
 
-exports.updateTodo = async function (req, res, next) {
+exports.updateWord = async function (req, res, next) {
 
   // Id is necessary for the update
 
@@ -92,19 +93,20 @@ exports.updateTodo = async function (req, res, next) {
 
   console.log(req.body)
 
-  var todo = {
+  var word = {
     id,
-    title: req.body.title ? req.body.title : null,
-    description: req.body.description ? req.body.description : null,
-    status: req.body.status ? req.body.status : null
+    word: req.body.word ? req.body.word : null,
+    type: req.body.type ? req.body.type : null,
+    plural: req.body.plural ? req.body.plural : null,
+    profane: req.body.profane ? req.body.profane : null
   }
 
   try {
-    var updatedTodo = await TodoService.updateTodo(todo)
+    var updatedWord = await WordService.updateWord(word)
     return res.status(200).json({
       status: 200,
-      data: updatedTodo,
-      message: "Succesfully Updated Tod"
+      data: updatedWord,
+      message: "Succesfully Updated Word"
     })
   } catch (e) {
     return res.status(400).json({
@@ -114,15 +116,15 @@ exports.updateTodo = async function (req, res, next) {
   }
 }
 
-exports.removeTodo = async function (req, res, next) {
+exports.removeWord = async function (req, res, next) {
 
   var id = req.params.id;
 
   try {
-    var deleted = await TodoService.deleteTodo(id)
+    var deleted = await WordService.deleteWord(id)
     return res.status(204).json({
       status: 204,
-      message: "Succesfully Todo Deleted"
+      message: "Succesfully Word Deleted"
     })
   } catch (e) {
     return res.status(400).json({

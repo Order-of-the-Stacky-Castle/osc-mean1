@@ -1,14 +1,14 @@
 // We need to be able to access the Service 
 //that we just created so let's pull that in
 
-var TodoService = require('../services/todo.service.js');
+var TemplateService = require('../services/template.service.js');
 
 // Make sure to save the context of 
 //this module inside the _this variable
 
 _this = this
 
-exports.getTodos = async function (req, res, next) {
+exports.getTemplates = async function (req, res, next) {
 
   // We're going to use ternary to check 
   //the existence of the query parameters
@@ -18,17 +18,17 @@ exports.getTodos = async function (req, res, next) {
 
   try {
 
-    var todos = await TodoService.getTodos({}, page, limit)
+    var templates = await TemplateService.getTemplates({}, page, limit)
 
-    // Return the todos list with the appropriate 
+    // Return the Template list with the appropriate 
     //HTTP Status Code and Message.
 
     return res
       .status(200)
       .json({
         status: 200,
-        data: todos,
-        message: "Succesfully Recieved Todos"
+        data: templates,
+        message: "Succesfully Recieved Templates"
       });
 
   } catch (e) {
@@ -44,14 +44,13 @@ exports.getTodos = async function (req, res, next) {
   }
 }
 
-exports.createTodo = async function (req, res, next) {
+exports.createTemplate = async function (req, res, next) {
 
   // Note: Req.Body contains the form submit values.
 
-  var todo = {
+  var template = {
     title: req.body.title,
-    description: req.body.description,
-    status: req.body.status
+    story: req.body.story
   }
 
   try {
@@ -59,11 +58,11 @@ exports.createTodo = async function (req, res, next) {
     // Calling the Service function 
     //with the new object from the Request Body
 
-    var createdTodo = await TodoService.createTodo(todo)
+    var createdTemplate = await TemplateService.createTemplate(template)
     return res.status(201).json({
       status: 201,
-      data: createdTodo,
-      message: "Succesfully Created ToDo"
+      data: createdTemplate,
+      message: "Succesfully Created Template"
     })
   } catch (e) {
 
@@ -72,12 +71,12 @@ exports.createTodo = async function (req, res, next) {
 
     return res.status(400).json({
       status: 400,
-      message: "Todo Creation was Unsuccesfull, I am sorry :( "
+      message: "Template Creation was Unsuccesfull, I am sorry :( "
     })
   }
 }
 
-exports.updateTodo = async function (req, res, next) {
+exports.updateTemplate = async function (req, res, next) {
 
   // Id is necessary for the update
 
@@ -92,19 +91,18 @@ exports.updateTodo = async function (req, res, next) {
 
   console.log(req.body)
 
-  var todo = {
+  var template = {
     id,
     title: req.body.title ? req.body.title : null,
-    description: req.body.description ? req.body.description : null,
-    status: req.body.status ? req.body.status : null
+    story: req.body.story ? req.body.story : null
   }
 
   try {
-    var updatedTodo = await TodoService.updateTodo(todo)
+    var updatedTemplate = await TemplateService.updateTemplate(template)
     return res.status(200).json({
       status: 200,
-      data: updatedTodo,
-      message: "Succesfully Updated Tod"
+      data: updatedTemplate,
+      message: "Succesfully Updated Template"
     })
   } catch (e) {
     return res.status(400).json({
@@ -114,15 +112,15 @@ exports.updateTodo = async function (req, res, next) {
   }
 }
 
-exports.removeTodo = async function (req, res, next) {
+exports.removeTemplate = async function (req, res, next) {
 
   var id = req.params.id;
 
   try {
-    var deleted = await TodoService.deleteTodo(id)
+    var deleted = await TemplateService.deleteTemplate(id)
     return res.status(204).json({
       status: 204,
-      message: "Succesfully Todo Deleted"
+      message: "Succesfully Template Deleted"
     })
   } catch (e) {
     return res.status(400).json({

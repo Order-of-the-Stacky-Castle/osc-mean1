@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PlayComponent } from './play/play.component';
+import { StoryComponent } from './story/story.component';
+import { TemplateComponent } from './template/template.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PlayComponent } from './play/play.component';
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
-    PlayComponent
+    StoryComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,

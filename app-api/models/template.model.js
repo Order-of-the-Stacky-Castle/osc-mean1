@@ -4,7 +4,7 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var TemplateSchema = new mongoose.Schema({
     title: String,
-    story: String,
+    body: JSON,
 })
 
 TemplateSchema.plugin(mongoosePaginate)

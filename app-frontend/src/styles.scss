@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Skeleton SCSS imports */
+@import "../node_modules/normalize-scss/sass/normalize/import-now"; // import normalize-scss
+@import "../node_modules/skeleton-sass-official/skeleton/core/config"; // Skeleton Sass core loader
+
+// import default theme variables
+@import "../node_modules/skeleton-sass-official/skeleton/themes/fresh/vars"; // theme variable overrides
+
+// import default theme styles
+@import "../node_modules/skeleton-sass-official/skeleton/themes/fresh/include_components"; // theme base styles
+@import "../node_modules/skeleton-sass-official/skeleton/themes/fresh/grid"; // theme grid styles
+
+// import custom css
+@import "assets/css/custom.css";

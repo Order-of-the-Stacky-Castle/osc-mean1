@@ -1,3 +1,42 @@
-<p>
-  words ;lkjasdf;lk works!
-</p>
+<nav class="navbar">
+  <div class="container">
+    <ul class="navbar-list">
+      <li class="navbar-item"><a class="navbar-link">Noun</a></li>
+      <li class="navbar-item"><a class="navbar-link">Verb</a></li>
+      <li class="navbar-item"><a class="navbar-link">AdVerb</a></li>
+      <li class="navbar-item"><a class="navbar-link">AdJective</a></li>
+    </ul>
+  </div>
+</nav>
+
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Plural</th>
+      <th>Profane</th>
+      <th>Stats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dave Gamache</td>
+      <td>26</td>
+      <td>Male</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <td>Dwayne Johnson</td>
+      <td>42</td>
+      <td>Male</td>
+      <td>Hayward</td>
+    </tr>
+    <tr *ngFor="let word of wordsList">
+    <!-- <tr> -->
+      <td>{{ word.word }}</td>
+      <td>{{ word.plural }}</td>
+      <td>{{ word.profane }}</td>
+      <td><button>stats</button></td>
+    </tr>
+  </tbody>
+</table>

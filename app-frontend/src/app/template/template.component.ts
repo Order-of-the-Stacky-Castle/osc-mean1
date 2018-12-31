@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TemplateService} from '../services/template.service';
+import { HttpClient, HttpResponse} from '@angular/common/http';
+import Template from '../models/template.model';
 
 @Component({
   selector: 'app-template',
@@ -7,9 +10,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
-  constructor() { }
+  constructor( private templateService: TemplateService ) { }
 
-  ngOnInit() {
+  public newTemplate: Template = new Template();
+  templatesList: Template[];
+  editTemplates: Template[];
+
+  ngOnInit(): void {
+    // Component initialization
+    this.templateService.getTemplates()
+      .subscribe(templates => {
+        this.templatesList = templates;
+      });
+  }
+
+  create() {
+    this.templateService.createTemplate(this.newTemplate)
+      .subscribe((res) => {
+        this.templatesList.push(res);
+        this.newTemplate = new Template();
+      });
+  }
+
+  editTemplate(template: Template) {
+    if (this.templatesList.includes(template)) {
+      if (!this.editTemplates.includes(template)) {
+        this.editTemplates.push(template);
+      } else {
+        this.editTemplates.splice(this.editTemplates.indexOf(template), 1);
+        this.updateTemplate(template);
+      }
+    }
+  }
+
+  updateTemplate(template: Template) {
+    this.templateService.editTemplate(template)
+      .subscribe(res => {
+        console.log('Update successful');
+      }, err => {
+        console.log('Update unsuccessful');
+      });
+  }
+
+  deleteTemplate(template: Template) {
+    this.templateService.deleteTemplate(template._id)
+      .subscribe(res => {
+        this.templatesList.splice(this.templatesList.indexOf(template), 1);
+      });
   }
 
 }

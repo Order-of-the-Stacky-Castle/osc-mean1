@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TemplateService} from '../services/template.service';
+import { TemplateService } from '../services/template.service';
 import Template from '../models/template.model';
 
 @Component({
@@ -8,8 +8,7 @@ import Template from '../models/template.model';
   styleUrls: ['./template.component.scss']
 })
 export class TemplateComponent implements OnInit {
-
-  constructor( private templateService: TemplateService ) { }
+  constructor(private templateService: TemplateService) {}
 
   public newTemplate: Template = new Template();
   templatesList: Template[];
@@ -17,18 +16,16 @@ export class TemplateComponent implements OnInit {
 
   ngOnInit(): void {
     // Component initialization
-    this.templateService.getTemplates()
-      .subscribe(templates => {
-        this.templatesList = templates;
-      });
+    this.templateService.getTemplates().subscribe(templates => {
+      this.templatesList = templates;
+    });
   }
 
-  create() {
-    this.templateService.createTemplate(this.newTemplate)
-      .subscribe((res) => {
-        this.templatesList.push(res);
-        this.newTemplate = new Template();
-      });
+  createTemplate() {
+    this.templateService.createTemplate(this.newTemplate).subscribe(res => {
+      //this.templatesList.push(res);
+      this.newTemplate = new Template();
+    });
   }
 
   editTemplate(template: Template) {
@@ -43,18 +40,19 @@ export class TemplateComponent implements OnInit {
   }
 
   updateTemplate(template: Template) {
-    this.templateService.editTemplate(template)
-      .subscribe(res => {
+    this.templateService.editTemplate(template).subscribe(
+      res => {
         console.log('Update successful');
-      }, err => {
+      },
+      err => {
         console.log('Update unsuccessful');
-      });
+      }
+    );
   }
 
   deleteTemplate(template: Template) {
-    this.templateService.deleteTemplate(template._id)
-      .subscribe(res => {
-        this.templatesList.splice(this.templatesList.indexOf(template), 1);
-      });
+    this.templateService.deleteTemplate(template._id).subscribe(res => {
+      this.templatesList.splice(this.templatesList.indexOf(template), 1);
+    });
   }
 }

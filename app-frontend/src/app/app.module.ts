@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { TemplateService } from './services/templates.service';
+import { TemplateService } from './services/template.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PlayComponent } from './play/play.component';
-import { TemplatesComponent } from './templates/templates.component';
+import { TemplateComponent } from './template/template.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { TemplatesComponent } from './templates/templates.component';
     NavComponent,
     PageNotFoundComponent,
     PlayComponent,
-    TemplatesComponent
+    TemplateComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [TemplateService],

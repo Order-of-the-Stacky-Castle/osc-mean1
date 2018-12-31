@@ -1,4 +1,4 @@
-import Template from '../models/templates.model';
+import Template from '../models/template.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,18 +12,18 @@ export class TemplateService {
 
   constructor(private http: HttpClient) {}
 
-  //Create template, takes a Template Object
+  // Create template, takes a Template Object
   createTemplate(template: Template): Observable<any> {
-    //returns the observable of http post request
+    // returns the observable of http post request
     return this.http.post(`${this.templateUrl}`, template);
   }
 
-  //Read templates, takes no arguments
+  // Read template, takes no arguments
   getTemplates(): Observable<Template[]> {
     console.log(this.templateUrl);
     return this.http.get(this.templateUrl).pipe(
       map(res => {
-        //Maps the response object sent from the server
+        // Maps the response object sent from the server
         return res['data'].docs as Template[];
       })
     );

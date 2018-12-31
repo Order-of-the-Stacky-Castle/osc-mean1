@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { TemplateService } from './services/templates.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PlayComponent } from './play/play.component';
+import { TemplatesComponent } from './templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +17,11 @@ import { PlayComponent } from './play/play.component';
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
-    PlayComponent
+    PlayComponent,
+    TemplatesComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  providers: [TemplateService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

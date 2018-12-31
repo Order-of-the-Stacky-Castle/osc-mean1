@@ -4,7 +4,6 @@ import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
 
-
 @Injectable()
 export class TemplateService {
   api_url = 'http://localhost:3000';

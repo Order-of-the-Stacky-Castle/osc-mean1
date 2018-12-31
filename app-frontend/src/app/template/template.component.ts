@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {TemplateService} from '../services/template.service';
-import { HttpClient, HttpResponse} from '@angular/common/http';
 import Template from '../models/template.model';
 
 @Component({
@@ -58,5 +57,4 @@ export class TemplateComponent implements OnInit {
         this.templatesList.splice(this.templatesList.indexOf(template), 1);
       });
   }
-
 }

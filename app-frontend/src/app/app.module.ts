@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { TemplateService } from './services/template.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,8 +8,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { StoryComponent } from './story/story.component';
 import { TemplateComponent } from './template/template.component';
+import { StoryComponent } from './story/story.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +17,11 @@ import { TemplateComponent } from './template/template.component';
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
+    TemplateComponent,
     StoryComponent,
-    TemplateComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  providers: [TemplateService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

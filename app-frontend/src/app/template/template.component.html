@@ -1,6 +1,6 @@
-<p>
-  template works!
-</p>
-<table>
-  <thead></thead>
-</table>
+<section class="template-container" *ngIf="templatesList">
+  <div class="template" *ngFor="let template of templatesList">
+    <div class="template-title">{{ template.title }} {{ template._id }}</div>
+    <div class="template-story">{{ template.story }}</div>
+  </div>
+</section>

@@ -1,22 +1,22 @@
-var express = require('express')
+var express = require('express');
 
-var router = express.Router()
+var router = express.Router();
 
 // Getting the Todo Controller that we just created
 
 var TemplateController = require('../../controllers/template.controller.js');
 
-
 // Map each API to the Controller FUnctions
 
-router.get('/', TemplateController.getTemplates)
+router.get('/', TemplateController.getTemplates);
 
-router.post('/', TemplateController.createTemplate)
+router.get('/:id', TemplateController.getTemplate);
 
-router.put('/', TemplateController.updateTemplate)
+router.post('/', TemplateController.createTemplate);
 
-router.delete('/:id', TemplateController.removeTemplate)
+router.put('/', TemplateController.updateTemplate);
 
+router.delete('/:id', TemplateController.removeTemplate);
 
 // Export the Router
 

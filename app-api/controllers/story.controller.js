@@ -44,6 +44,28 @@ exports.getStories = async function (req, res, next) {
     }
 };
 
+exports.getStoryById = async function (req, res, next) {
+
+    var id = req.params.id;
+
+    try {
+        var story = await StoryService.getStoryById(id);
+        console.log(story.data);
+        return res.status(200)
+            .json({
+                status: 200,
+                data: story,
+                message: `Successfully Retrieved Story _id : ${id}`
+            })
+
+    } catch (e) {
+        return res.status(400).json({
+            status: 400,
+            message: `[StoryController ERROR]: Problem retrieving Story with _id : ${id}; MESSAGE: ${e.message}`
+        })
+    }
+};
+
 exports.createStory = async function (req, res, next) {
 
     // Note: Req.Body contains the form submit values.

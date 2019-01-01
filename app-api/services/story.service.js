@@ -1,94 +1,73 @@
 // Access our newly created Mongoose Model
-var Story = require('../models/story.model.js')
+var Story = require('../models/story.model.js');
 
 // Saving the context of this module inside the _the variable
-_this = this
+_this = this;
 
-// Let's use an Async function to get the To Do List
+//  Async function to get all stories
 exports.getStories = async function (query, page, limit) {
-
-    // We also want to set up options for the mongoose paginate
-
+    // Options for mongoose paginate
     var options = {
         page,
         limit
     };
-    //Let's create a Try and Catch function
-    //that way we have some error handling set.
-    //Waiting for the promise
-
     try {
-        var stories = await Story.paginate(query, options);
-
-        //Once the Mongoose promise is returned
-        //we're going to go ahead and return
-        //the To Do List it has produced
-
-        return stories;
-
+        // Return the list of stories returned by the mongoose promise
+        return await Story.paginate(query, options);
     } catch (e) {
-
-        //If the try didn't work we're going to
-        //go ahead and let the users know what kind of
-        //Error we have
-
-        throw Error('Oh No! We got an error while Paginating our Stories, so sorry!')
+        // Failed promise return error
+        throw Error(`Problem with returned database records pagination, [ERROR StoryService.getStories]: ${e.message}`)
     }
-}
+};
 
+//  Async function to get story by _id
+exports.getStoryById = async function (id) {
+    try {
+        // Return query results that match the story id
+        return await Story.findById(id);
+    } catch (e) {
+        // Failed promise return error
+        throw Error(`Problem getting story by id, [ERROR StoryService.getStoryById]: ${e.message}`)
+    }
+};
+
+//  Async function to create and post a new story
 exports.createStory = async function (story) {
-
     // Creating a new Mongoose Object by using the new keyword
-
     var newStory = new Story({
         template_id: story.template_id,
         words: story.words,
-    })
-
+    });
     try {
-
-        // Let's go ahead and save the template
-
-        var savedStory = await newStory.save()
-
-        return savedStory;
+        //  Promise to save Mongoose story object to database.
+        return await newStory.save()
     } catch (e) {
-
-        //if we can't create a template we want to throw an error
-
-        throw Error("Error while Creating Story")
+        // Failed promise return error
+        throw Error(`Error while Creating Story, [ERROR StoryService.createStory]: ${e.message}`)
     }
 }
 
 exports.updateStory = async function (story) {
-    var id = story._id;
     try {
-        //Find the old template Object by the Id
-
-        var oldStory = await Story.findById(id);
+        //Find the old story Object by the Id
+        var oldStory = await Story.findById(story.id);
     } catch (e) {
-        throw Error("Error occurred while Finding the Story")
+        throw Error(`Error occurred while Finding the Story, [ERROR StoryService.updateStory]: ${e.message}`)
     }
 
-    // If no old template Object exists return false
-
-    if (!oldStory) {
-        return false;
-    }
-
-    console.log(oldStory);
-
-    //Edit the template Object
-
+    // If no story Object exists return false
+    if (!oldStory) { return false; }
+    
+    console.log('Original' + oldStory);
+    //Edit the story Object
     oldStory.template_id = story.template_id;
     oldStory.words = story.words;
-
-    console.log(oldStory);
+    console.log('Updated' + oldStory);
 
     try {
         return await oldStory.updateOne(story);
     } catch (e) {
-        throw Error("And Error occured while updating the story");
+        throw Error(`Error occured while updating the story, [ERROR StoryService.updateStory]: ${e.message}`);
     }
 }
 
@@ -97,14 +76,8 @@ exports.deleteStory = async function (id) {
     // Delete the template
 
     try {
-        var deleted = await Story.deleteOne({
-            _id: id
-        });
-        if (deleted.n === 0) {
-            throw Error("Story Could not be deleted")
-        }
-        return deleted
+        return await Story.deleteOne({ _id: id });
     } catch (e) {
-        throw Error("Error Occurred while Deleting the Story")
+        throw Error(`Error Occurred while Deleting the Story, [ERROR StoryService.deleteStory]: ${e.message}`)
     }
 }

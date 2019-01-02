@@ -12,6 +12,7 @@ import { WordsComponent } from './words/words.component';
 import { WordFormComponent } from "./word-form/word-form.component";
 import { TemplateComponent } from './template/template.component';
 import { StoryComponent } from './story/story.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,9 +24,15 @@ import { StoryComponent } from './story/story.component';
     WordsComponent,
     WordFormComponent,
     TemplateComponent,
-    StoryComponent,
+    StoryComponent
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   providers: [TemplateService],
   bootstrap: [AppComponent]
 })

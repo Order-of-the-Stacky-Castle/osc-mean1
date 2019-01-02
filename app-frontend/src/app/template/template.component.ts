@@ -26,7 +26,7 @@ export class TemplateComponent implements OnInit {
   create() {
     this.templateService.createTemplate(this.newTemplate)
       .subscribe((res) => {
-        this.templatesList.push(res);
+        // this.templatesList.push(res);
         this.newTemplate = new Template();
       });
   }

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WordsComponent } from './words/words.component';
 import { TemplateComponent } from './template/template.component';
 import { StoryComponent } from './story/story.component';
 
@@ -17,6 +18,7 @@ import { StoryComponent } from './story/story.component';
     HomeComponent,
     NavComponent,
     PageNotFoundComponent,
+    WordsComponent,
     TemplateComponent,
     StoryComponent,
   ],

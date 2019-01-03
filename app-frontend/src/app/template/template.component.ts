@@ -8,7 +8,7 @@ import Template from '../models/template.model';
   styleUrls: ['./template.component.scss']
 })
 export class TemplateComponent implements OnInit {
-  constructor(private templateService: TemplateService) {}
+  constructor(private templateService: TemplateService) { }
 
   public newTemplate: Template = new Template();
   templatesList: Template[];
@@ -21,11 +21,12 @@ export class TemplateComponent implements OnInit {
     });
   }
 
-  createTemplate() {
-    this.templateService.createTemplate(this.newTemplate).subscribe(res => {
-      //this.templatesList.push(res);
-      this.newTemplate = new Template();
-    });
+  create() {
+    this.templateService.createTemplate(this.newTemplate)
+      .subscribe((res) => {
+        // this.templatesList.push(res);
+        this.newTemplate = new Template();
+      });
   }
 
   editTemplate(template: Template) {

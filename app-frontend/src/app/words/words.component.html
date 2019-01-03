@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="container">
+    <ul class="navbar-list">
+      <li class="navbar-item"><a class="navbar-link">Noun</a></li>
+      <li class="navbar-item"><a class="navbar-link">Verb</a></li>
+      <li class="navbar-item"><a class="navbar-link">AdVerb</a></li>
+      <li class="navbar-item"><a class="navbar-link">AdJective</a></li>
+    </ul>
+  </div>
+</nav>
+
+<a routerLink="/words/new"><button>Create New Word</button></a>
+
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Plural</th>
+      <th>Profane</th>
+      <th>Stats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let word of wordsList">
+    <!-- <tr> -->
+      <td>{{ word.word }}</td>
+      <td>{{ word.plural }}</td>
+      <td>{{ word.profane }}</td>
+      <td><button>stats</button></td>
+    </tr>
+  </tbody>
+</table>

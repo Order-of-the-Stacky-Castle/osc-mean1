@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WordService } from "../services/word.service";
+import { Word }from "../models/words.model";
 
 @Component({
   selector: "app-words",
@@ -6,28 +8,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ["./words.component.scss"]
 })
 export class WordsComponent implements OnInit {
-  constructor() {}
+  constructor(private wordService: WordService) {}
 
-  wordsList = [
-    {
-      word: "Bojack",
-      type: "Noun",
-      plural: false,
-      profane: true
-    },
-    {
-      word: "Cry",
-      type: "Verb",
-      plural: false,
-      profane: false
-    },
-    {
-      word: "Fuzzies",
-      type: "Noun",
-      plural: true,
-      profane: false
-    }
-  ];
+  // //Declaring the new todo Object and initilizing it
+  newTodo: Word = new Word();
 
-  ngOnInit() {}
+  // //An Empty list for the visible Word list
+  wordsList: Word[];
+  editWords: Word[] = [];
+
+  // wordsList = [
+  //   {
+  //     word: "Bojack",
+  //     type: "Noun",
+  //     plural: false,
+  //     profane: true
+  //   },
+  //   {
+  //     word: "Cry",
+  //     type: "Verb",
+  //     plural: false,
+  //     profane: false
+  //   },
+  //   {
+  //     word: "Fuzzies",
+  //     type: "Noun",
+  //     plural: true,
+  //     profane: false
+  //   }
+  // ];
+
+  ngOnInit() {
+    //At component initialization the 
+    this.wordService.getWords()
+      .subscribe(words => {
+        //assign the todolist property to the proper http response
+        this.wordsList = words
+        console.log(words)
+      })
+  }
 }

@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 // Added requires
 var mongoose = require('mongoose');
+const mlab = `mongodb://stackyblocks:stackyblocks1@ds149034.mlab.com:49034/stackymadlib`;
 var bluebird = require('bluebird');
 
 // var indexRouter = require('./routes/index');
@@ -37,19 +38,18 @@ app.use('/api', api);
 
 //  ADDED CODE
 //  Test mongoose connection
-mongoose
-  .connect(
-    'mongodb://127.0.0.1:27017/madlibs',
-    { useNewUrlParser: true }
-  )
+mongoose.connect(
+  process.env.MONGODB_URI || mlab,
+  { useNewUrlParser: true }
+)
   .then(() => {
     console.log(
-      `Successfully Connected to the Mongodb Database at URL :mongodb://127.0.0.1:27017/madlibs`
+      `Successfully Connected to the Mongodb Database `
     );
   })
   .catch(() => {
     console.log(
-      'Error connecting to the Mongodb Database at URL :mongodb://127.0.0.1:27017/madlibs'
+      'Error connecting to the Mongodb Database'
     );
   });
 

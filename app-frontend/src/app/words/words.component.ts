@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WordService } from "../services/word.service";
-import { Word }from "../models/words.model";
+import { Word } from "../models/words.model";
 
 @Component({
   selector: "app-words",
@@ -39,11 +39,49 @@ export class WordsComponent implements OnInit {
   // ];
 
   ngOnInit() {
-    //At component initialization the
     this.wordService.getWords().subscribe(words => {
       //assign the todolist property to the proper http response
       this.wordsList = words.data.docs;
       console.log(words);
+    });
+  }
+
+  getAll() {
+    this.wordService.getWords().subscribe(words => {
+      //assign the todolist property to the proper http response
+      this.wordsList = words.data.docs;
+      console.log(words);
+    });
+  }
+
+  getNouns() {
+    this.wordService.getWords().subscribe(words => {
+      let allWords = words.data.docs;
+      this.wordsList = allWords.filter(word => word.type === "noun");
+    });
+    // this.wordsList = this.wordsList.filter(word => word.type === "noun");
+  }
+
+  getVerbs() {
+    // this.wordsList = this.wordsList.filter(word => word.type === "verb");
+    this.wordService.getWords().subscribe(words => {
+      let allWords = words.data.docs;
+      this.wordsList = allWords.filter(word => word.type === "verb");
+    });
+  }
+
+  getAdjectives() {
+    this.wordService.getWords().subscribe(words => {
+      let allWords = words.data.docs;
+      this.wordsList = allWords.filter(word => word.type === "adjective");
+    });
+  }
+
+  getAdverbs() {
+    // this.wordsList = this.wordsList.filter(word => word.type === "verb");
+    this.wordService.getWords().subscribe(words => {
+      let allWords = words.data.docs;
+      this.wordsList = allWords.filter(word => word.type === "adverb");
     });
   }
 

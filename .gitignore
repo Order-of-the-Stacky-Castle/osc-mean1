@@ -2,3 +2,5 @@
 .idea/
 
 ./app-api/config.js
+
+app-api/config.js

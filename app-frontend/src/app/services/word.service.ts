@@ -27,10 +27,10 @@ export class WordService {
         catchError(this.handleError('getWords', []))
       );
   }
-  // createPlay(play: Play): Observable<any> {
-  //   // returns the observable of http post request
-  //   return this.http.post(`${this.playUrl}`, play);
-  // }
+  createWord(word: Word): Observable<any> {
+    // returns the observable of http post request
+    return this.http.post(`${this.wordsUrl}`, word);
+  }
   // getPlays(): Observable<Play[]>{
   //   return this.http.get(this.playUrl)
   //     .pipe(map(res  => {

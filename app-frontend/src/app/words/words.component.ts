@@ -11,7 +11,7 @@ export class WordsComponent implements OnInit {
   constructor(private wordService: WordService) {}
 
   // //Declaring the new todo Object and initilizing it
-  newTodo: Word = new Word();
+  newWord: Word = new Word();
 
   // //An Empty list for the visible Word list
   wordsList: Word[];
@@ -39,12 +39,18 @@ export class WordsComponent implements OnInit {
   // ];
 
   ngOnInit() {
-    //At component initialization the 
-    this.wordService.getWords()
-      .subscribe(words => {
-        //assign the todolist property to the proper http response
-        this.wordsList = words
-        console.log(words)
-      })
+    //At component initialization the
+    this.wordService.getWords().subscribe(words => {
+      //assign the todolist property to the proper http response
+      this.wordsList = words.data.docs;
+      console.log(words);
+    });
+  }
+
+  create() {
+    this.wordService.createWord(this.newWord).subscribe(res => {
+      this.wordsList.push(res.data);
+      this.newWord = new Word();
+    });
   }
 }

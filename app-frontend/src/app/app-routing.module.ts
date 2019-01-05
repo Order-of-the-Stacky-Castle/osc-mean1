@@ -11,6 +11,8 @@ import { TemplateComponent } from './template/template.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'words', component: WordsComponent },
+  { path: 'words/nouns', component: WordsComponent },
+  { path: 'words/verbs', component: WordsComponent },
   { path: 'play', component: StoryComponent},
   { path: 'templates', component: TemplateComponent },
   { path: 'words/new', component: WordFormComponent },

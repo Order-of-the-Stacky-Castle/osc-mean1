@@ -13,6 +13,7 @@ import { WordFormComponent } from "./word-form/word-form.component";
 import { TemplateComponent } from './template/template.component';
 import { StoryComponent } from './story/story.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WordService } from "./services/word.service";
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [TemplateService],
+  providers: [TemplateService, WordService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

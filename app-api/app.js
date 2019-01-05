@@ -6,13 +6,13 @@ var logger = require('morgan');
 
 // Added requires
 var mongoose = require('mongoose');
-const mlab = `mongodb://stackyblocks:stackyblocks1@ds149034.mlab.com:49034/stackymadlib`;
+// const mlab = `mongodb://stackyblocks:stackyblocks1@ds149034.mlab.com:49034/stackymadlib`;
 var bluebird = require('bluebird');
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 var api = require('./routes/api.route');
-
+var mlab = require('./config');
 var app = express();
 
 // CORS Usage

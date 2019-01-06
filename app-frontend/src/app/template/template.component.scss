@@ -1,21 +1,19 @@
-.template {
-  border: 1px solid #eee;
-  padding: 0.5rem;
-  margin-top: 1rem;
+$lightblue: #0FA0CE;
+$lighterblue: lighten(#0FA0CE, 20%);
+$purps: #9b0fce;
+
+div {
+  color: $lighterblue;
 }
 
-.template-title {
-  //  border: 1px solid #ccc;
-  padding: 0.5rem;
-  font-size: 2rem;
-  font-weight: bold;
-  color: hsl(0, 0%, 35%);
-}
+button {
+  color: $lighterblue;
+  border-color: $lightblue;
+  transition: background ease-in-out .2s;
 
-.template-story {
-  //  border: 1px solid #ccc;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  font-style: italic;
-  color: hsl(0, 0%, 50%);
+  &:hover {
+    background: $purps;
+    color: $lighterblue;
+    transition: background ease-in-out .2s;
+  }
 }

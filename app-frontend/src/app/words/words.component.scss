@@ -1,3 +1,5 @@
+@import '../colors';
+
 $lightblue: #0FA0CE;
 $lighterblue: lighten(#0FA0CE, 20%);
 $purps: #9b0fce;
@@ -16,4 +18,8 @@ button {
     color: $lighterblue;
     transition: background ease-in-out .2s;
   }
+}
+
+li.active-link a {
+  color: $indigo5;
 }

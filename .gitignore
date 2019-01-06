@@ -1,2 +1,6 @@
 .DS_Store
 .idea/
+
+./app-api/config.js
+
+app-api/config.js

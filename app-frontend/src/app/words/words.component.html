@@ -1,11 +1,16 @@
 <nav class="navbar">
   <div class="container">
     <ul class="navbar-list">
-      <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/all">all</a></li>
+      <!-- <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/all">all</a></li>
       <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/nouns">Noun</a></li>
       <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/verbs">Verb</a></li>
       <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/adverbs">Adverbs</a></li>
-      <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/adjectives">Adjectives</a></li>
+      <li routerLinkActive="active-link" class="navbar-item"><a class="navbar-link" routerLink="/words/adjectives">Adjectives</a></li> -->
+      <li class="navbar-item" (click)="getAll()"><a class="navbar-link">all</a></li>
+      <li class="navbar-item" (click)="getNouns()"><a class="navbar-link">Noun</a></li>
+      <li class="navbar-item" (click)="getVerbs()"><a class="navbar-link">Verb</a></li>
+      <li class="navbar-item" (click)="getAdverbs()"><a class="navbar-link">Adverbs</a></li>
+      <li class="navbar-item" (click)="getAdjectives()"><a class="navbar-link">Adjectives</a></li>
     </ul>
   </div>
 </nav>

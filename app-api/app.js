@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 // Added requires
 var mongoose = require('mongoose');
-// const mlab = `mongodb://stackyblocks:stackyblocks1@ds149034.mlab.com:49034/stackymadlib`;
 var bluebird = require('bluebird');
 
 // var indexRouter = require('./routes/index');

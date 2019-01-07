@@ -90,7 +90,8 @@ export class WordsComponent implements OnInit {
 
   create(e) {
     let nWord = new Word();
-    nWord = e.form.value
+    nWord.word = e.form.value.word
+    nWord.type = e.form.value.type
     this.wordService.createWord(nWord).subscribe(res => {
       console.log("res data says... ", res.data)
       this.wordsList.push(res.data);

@@ -29,6 +29,8 @@ export class WordService {
   }
   createWord(word: Word): Observable<any> {
     // returns the observable of http post request
+    console.log(word);
+
     return this.http.post(`${this.wordsUrl}`, word);
   }
   // getPlays(): Observable<Play[]>{

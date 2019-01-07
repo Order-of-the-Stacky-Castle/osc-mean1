@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { NgForm } from "@angular/forms";
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: "app-word-form",
-  templateUrl: "./word-form.component.html",
-  styleUrls: ["./word-form.component.scss"]
+  selector: 'app-word-form',
+  templateUrl: './word-form.component.html',
+  styleUrls: ['./word-form.component.scss']
 })
 export class WordFormComponent implements OnInit {
   constructor(

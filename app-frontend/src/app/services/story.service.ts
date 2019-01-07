@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Story } from '../models/story.model';
+import { Template } from '../models/template.model';
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -13,18 +14,26 @@ const httpOptions = {
 
 @Injectable()
 export class StoryService {
-
-  private storiesUrl = 'api/stories';
+  api_url = 'http://localhost:3000';
+  storiesUrl = `${this.api_url}/api/stories`;
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  getStories(): Observable<Story[]> {
-    return this.http.get<Story[]>(this.storiesUrl)
+  getStories(): Observable<any> {
+    return this.http.get(this.storiesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError('getHeroes', []))
+        map(res => res),
+        catchError(this.handleError('getStories', []))
+      );
+  }
+
+  play(template: Template): Observable<any> {
+    return this.http.get(this.storiesUrl)
+      .pipe(
+        map(res => res),
+        catchError(this.handleError('play', []))
       );
   }
   // createPlay(play: Play): Observable<any> {

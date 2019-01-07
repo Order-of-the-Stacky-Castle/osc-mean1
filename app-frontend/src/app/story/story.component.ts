@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Template} from '../models/template.model';
 import {StoryService} from '../services/story.service';
-import {Story} from '../models/story.model';
+import { Story  } from '../models/story.model';
 
 @Component({
   selector: 'app-story',
@@ -8,17 +9,24 @@ import {Story} from '../models/story.model';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent implements OnInit {
-
+  public templates: Template[];
   constructor(private storyService: StoryService) {
   }
 
-  newStory: Story = new Story();
-
+  templatesList: Template[];
   storiesList: Story[];
 
   ngOnInit() {
+    this.storyService.getStories()
+      .subscribe(template => {
+      this.templatesList = template.data.docs;
+      console.log(template);
+    });
+  }
+
+  getAll() {
     this.storyService.getStories().subscribe(story => {
-      //assign the todolist property to the proper http response
+      // assign the todolist property to the proper http response
       this.storiesList = story.data.docs;
       console.log(story);
     });

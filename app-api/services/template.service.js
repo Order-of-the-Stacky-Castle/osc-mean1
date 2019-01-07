@@ -1,40 +1,46 @@
 // Access our newly created Mongoose Model
-var Template = require('../models/template.model.js')
+var Template = require('../models/template.model.js');
 
 // Saving the context of this module inside the _the variable
-_this = this
+_this = this;
 
 // Let's use an Async function to get the To Do List
 exports.getTemplates = async function (query, page, limit) {
 
   // We also want to set up options for the mongoose paginate
 
-  var options = {
+  let options = {
     page,
     limit
-  }
-  //Let's create a Try and Catch function 
-  //that way we have some error handling set. 
+  };
+  //Let's create a Try and Catch function
+  //that way we have some error handling set.
   //Waiting for the promise
 
   try {
-    var templates = await Template.paginate(query, options)
-
-    //Once the Mongoose promise is returned 
-    //we're going to go ahead and return 
-    //the To Do List it has produced 
-
-    return templates;
+    //Once the Mongoose promise is returned
+    //we're going to go ahead and return
+    //the To Do List it has produced
+    return await Template.paginate(query, options);
 
   } catch (e) {
 
-    //If the try didn't work we're going to 
-    //go ahead and let the users know what kind of 
+    //If the try didn't work we're going to
+    //go ahead and let the users know what kind of
     //Error we have
 
     throw Error('Oh No! We got an error while Paginating our Templates, so sorry!')
   }
-}
+};
+
+exports.getTemplate = async function(id) {
+  try {
+    var returned = await Template.findById({_id: id });
+    return returned;
+  } catch (e) {
+    throw Error(`Could not get Template with _id ${id}`)
+  }
+};
 
 exports.createTemplate = async function (template) {
 
@@ -47,14 +53,14 @@ exports.createTemplate = async function (template) {
 
   try {
 
-    // Let's go ahead and save the template 
+    // Let's go ahead and save the template
 
     var savedTemplate = await newTemplate.save()
 
     return savedTemplate;
   } catch (e) {
 
-    //if we can't create a template we want to throw an error 
+    //if we can't create a template we want to throw an error
 
     throw Error("Error while Creating Template")
   }
@@ -92,7 +98,7 @@ exports.updateTemplate = async function (template) {
   } catch (e) {
     throw Error("And Error occured while updating the template");
   }
-}
+};
 
 exports.deleteTemplate = async function (id) {
 
@@ -101,12 +107,9 @@ exports.deleteTemplate = async function (id) {
   try {
     var deleted = await Template.deleteOne({
       _id: id
-    })
-    if (deleted.n === 0) {
-      throw Error("Template Could not be deleted")
-    }
+    });
     return deleted
   } catch (e) {
     throw Error("Error Occured while Deleting the Template")
   }
-}
+};

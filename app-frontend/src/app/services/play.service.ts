@@ -26,10 +26,6 @@ export class PlayService {
       );
   }
 
-  playTemplate(template_id: string, words: [string]): Observable<Template> {
-    return this.ts.getTemplate(template_id);
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure

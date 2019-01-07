@@ -32,6 +32,7 @@ export class PlayComponent implements OnInit {
         this.currentTemplate = template;
       }
     }
+    console.log(this.currentTemplate);
     this.showTemplateSelect = false;
     this.showGetWordsForm = true;
   }

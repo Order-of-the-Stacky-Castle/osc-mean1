@@ -10,7 +10,13 @@ var TemplateController = require('../../controllers/template.controller.js');
 
 router.get('/', TemplateController.getTemplates);
 
+<<<<<<< HEAD
 router.get('/:id', TemplateController.getTemplate);
+=======
+router.get('/:id', TemplateController.getTemplateById)
+
+router.post('/', TemplateController.createTemplate)
+>>>>>>> dev
 
 router.post('/', TemplateController.createTemplate);
 

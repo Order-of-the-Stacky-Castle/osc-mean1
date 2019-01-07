@@ -2,15 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { TemplateService } from '../services/template.service';
 import Template from '../models/template.model';
 
+
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
   styleUrls: ['./template.component.scss']
 })
 export class TemplateComponent implements OnInit {
-  constructor(private templateService: TemplateService) { }
 
-  public newTemplate: Template = new Template();
+  constructor(private templateService: TemplateService) {
+  }
+
+  public newTemplate: Template = new Template(
+    'default',
+    'default',
+    false,
+    'default',
+    ['Hello',
+      '{type: "noun", subtype: "name", word: "Mr. Default"}']
+  );
   templatesList: Template[];
   editTemplates: Template[];
 
@@ -21,11 +31,11 @@ export class TemplateComponent implements OnInit {
     });
   }
 
-  create() {
+  create(title: string, createdBy: string, isProfane: boolean, category: string, body: [string]) {
     this.templateService.createTemplate(this.newTemplate)
       .subscribe((res) => {
         // this.templatesList.push(res);
-        this.newTemplate = new Template();
+        this.newTemplate = new Template(title, createdBy, isProfane, category, body);
       });
   }
 

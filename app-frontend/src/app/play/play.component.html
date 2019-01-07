@@ -1,0 +1,17 @@
+<p>Welcome!</p>
+<h2>Instructions</h2>
+<p>To play OSC Madlips, please select a madlib from the dropdown below, then click the play button.</p>
+
+<ng-form novalidate (ngSubmit)="playStory(storyForm)" #storyForm="ngForm">
+  <div class="row">
+    <label for="selectList">Choose a title to begin: </label>
+
+    <select id="selectList">
+      <option  *ngFor="let template of templatesList" value="{{template._id}}">{{template.title}}</option>
+    </select>
+
+  </div>
+  <button type="submit">Play</button>
+</ng-form>
+
+

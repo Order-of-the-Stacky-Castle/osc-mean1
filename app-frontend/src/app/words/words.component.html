@@ -15,7 +15,15 @@
   </div>
 </nav>
 
-<a routerLink="/words/new"><button>Create New Word</button></a>
+<!-- <a routerLink="/words/new"><button>Create New Word</button></a> -->
+<button (click)="showForm()">new word</button>
+<form #w="ngForm" (ngSubmit)="create(w)">
+  <input type="text" ngModel placeholder="Word" name="word" id="name">
+  <select ngModel name="type" id="type">
+    <option *ngFor="let type of types" [value]="type">{{type}}</option>
+  </select>
+  <button type="submit">submit</button>
+</form>
 
 <table class="u-full-width">
   <thead>
@@ -33,6 +41,7 @@
       <td>{{ word.plural }}</td>
       <td>{{ word.profane }}</td>
       <td><button>stats</button></td>
+      <td><button (click)="deleteWord(word)">delete</button></td>
     </tr>
   </tbody>
 </table>

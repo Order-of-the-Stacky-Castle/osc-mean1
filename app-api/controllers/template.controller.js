@@ -8,7 +8,12 @@ var TemplateService = require('../services/template.service.js');
 
 _this = this;
 
+<<<<<<< HEAD
 exports.getTemplates = async function(req, res, next) {
+=======
+exports.getTemplates = async function (req, res, next) {
+
+>>>>>>> dev
   // We're going to use ternary to check
   //the existence of the query parameters
 
@@ -18,6 +23,11 @@ exports.getTemplates = async function(req, res, next) {
   try {
     var templates = await TemplateService.getTemplates({}, page, limit);
 
+<<<<<<< HEAD
+=======
+    var templates = await TemplateService.getTemplates({}, page, limit)
+
+>>>>>>> dev
     // Return the Template list with the appropriate
     //HTTP Status Code and Message.
 
@@ -27,6 +37,10 @@ exports.getTemplates = async function(req, res, next) {
       message: 'Succesfully Recieved Templates'
     });
   } catch (e) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     //Return an Error Response Message
     //with Code and the Error Message.
 
@@ -37,8 +51,32 @@ exports.getTemplates = async function(req, res, next) {
   }
 };
 
+<<<<<<< HEAD
 exports.getTemplate = async function(req, res, next) {
   var id = req.params.id;
+=======
+exports.getTemplateById = async function (req, res, next){
+  let id = req.params.id;
+
+  try {
+    let found = await TemplateService.getTemplate(id);
+    return res
+        .status(200)
+        .json({
+          status: 200,
+          data: found,
+          message: `Retrieved Template with _id: ${id}`
+    });
+  } catch (e) {
+    return res.status(400).json({
+      status: 400,
+      message: e.message
+    })
+  }
+}
+
+exports.createTemplate = async function (req, res, next) {
+>>>>>>> dev
 
   try {
     var story = await TemplateService.getTemplateById(id);
@@ -67,6 +105,10 @@ exports.createTemplate = async function(req, res, next) {
   };
 
   try {
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     // Calling the Service function
     //with the new object from the Request Body
 
@@ -77,6 +119,10 @@ exports.createTemplate = async function(req, res, next) {
       message: 'Succesfully Created Template'
     });
   } catch (e) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     //Return an Error Response Message
     //with Code and the Error Message.
 
@@ -137,4 +183,9 @@ exports.removeTemplate = async function(req, res, next) {
       message: e.message
     });
   }
+<<<<<<< HEAD
 };
+=======
+
+}
+>>>>>>> dev

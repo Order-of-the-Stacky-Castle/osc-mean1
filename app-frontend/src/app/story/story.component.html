@@ -1,3 +1,14 @@
-<p>
-  story works!
-</p>
+<p>Welcome!</p>
+<h2>Instructions</h2>
+<p>To play OSC Madlips, please select a madlib from the dropdown below, then click the play button.</p>
+
+<form novalidate (ngSubmit)="playStory(storyForm)" #storyForm="ngForm">
+  <div class="row">
+    <label>Choose a Template: </label>
+      <option *ngFor="let title of templatesList" value="{{title}}" NgSelectOption></option>
+    <select></select>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="play()">Play</button>
+</form>
+
+

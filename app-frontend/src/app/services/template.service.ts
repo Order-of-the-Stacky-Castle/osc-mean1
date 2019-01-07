@@ -9,7 +9,7 @@ export class TemplateService {
   api_url = 'http://localhost:3000';
   templateUrl = `${this.api_url}/api/templates`;
   // Constructor
-  constructor( private http: HttpClient ) {}
+  constructor( private http: HttpClient) {}
 
   createTemplate(template: Template) {
     return this.http.post(`${this.templateUrl}`, template);
@@ -20,6 +20,14 @@ export class TemplateService {
       .pipe(map(res => {
         return res['data'].docs as Template[];
       }));
+  }
+
+  getTemplate(id: string): Observable<Template> {
+    return this.http.get(`${this.templateUrl}/${id}`)
+      .pipe(map(res => {
+        return res['data'].docs as Template;
+      }));
+
   }
 
   editTemplate(template: Template) {

@@ -11,6 +11,8 @@ var TemplateController = require('../../controllers/template.controller.js');
 
 router.get('/', TemplateController.getTemplates)
 
+router.get('/:id', TemplateController.getTemplateById)
+
 router.post('/', TemplateController.createTemplate)
 
 router.put('/', TemplateController.updateTemplate)

@@ -18,6 +18,7 @@ import { StoryService } from './services/story.service';
 import { PlayComponent } from './play/play.component';
 import { PlayService } from './services/play.service';
 import { PlayMadlibComponent } from './play-madlib/play-madlib.component';
+import { WordDetailComponent } from './word-detail/word-detail.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PlayMadlibComponent } from './play-madlib/play-madlib.component';
     TemplateComponent,
     StoryComponent,
     PlayComponent,
-    PlayMadlibComponent
+    PlayMadlibComponent,
+    WordDetailComponent
   ],
   imports: [
     BrowserModule,

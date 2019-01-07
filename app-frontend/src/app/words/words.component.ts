@@ -10,6 +10,8 @@ import { Word } from '../models/words.model';
 export class WordsComponent implements OnInit {
   constructor(private wordService: WordService) {}
 
+  formVisible = false;
+
   //  // Declaring the new Word Object and initilizing it
   newWord: Word = new Word();
   types = ['noun', 'verb', 'adjective', 'adverb'];
@@ -88,7 +90,8 @@ export class WordsComponent implements OnInit {
 
   create(e) {
     let nWord = new Word();
-    nWord = e.form.value
+    nWord.word = e.form.value.word
+    nWord.type = e.form.value.type
     this.wordService.createWord(nWord).subscribe(res => {
       console.log("res data says... ", res.data)
       this.wordsList.push(res.data);
@@ -105,9 +108,11 @@ export class WordsComponent implements OnInit {
     })
   }
 
-  // submitWord(event, word: Word) {
-  //   if (event.keyCode == 13) {
-  //     this.editWord(word)
-  //   }
-  // }
+  showForm(){
+    if(this.formVisible === true){
+      this.formVisible = false;
+    } else {
+      this.formVisible = true;
+    }
+  }
 }

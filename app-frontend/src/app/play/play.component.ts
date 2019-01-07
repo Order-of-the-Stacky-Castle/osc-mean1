@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Template from '../models/template.model';
 import {PlayService} from '../services/play.service';
+import { template } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-play',
@@ -11,11 +12,39 @@ export class PlayComponent implements OnInit {
 
   constructor(private playService: PlayService) { }
 
+  blanksList: String[] = [];
   templatesList: Template[];
+  showTemplateSelect: boolean;
+  currentTemplate: Template;
+  showGetWordsForm: boolean;
+  showMadLib: boolean;
   ngOnInit() {
     this.playService.getTemplates().subscribe( templates => {
       this.templatesList = templates.data.docs;
       console.log(templates);
     });
+    this.showTemplateSelect = true;
+    this.showGetWordsForm = false;
+    this.showMadLib = false;
+  }
+
+  getWords(id) {
+    for ( const t of this.templatesList) {
+      if ( t._id === id) {
+        this.currentTemplate = t;
+      }
+    }
+    // console.log("current template is", this.currentTemplate);
+    this.currentTemplate.body.forEach(x => {
+      if(typeof x === 'object') {
+        this.blanksList.push(x);
+      }
+    });
+    console.log(this.blanksList);
+    // for(let part of this.currentTemplate.body){
+    //   console.log(part);
+    // }
+    this.showTemplateSelect = false;
+    this.showGetWordsForm = true;
   }
 }

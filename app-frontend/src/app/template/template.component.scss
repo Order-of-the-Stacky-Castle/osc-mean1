@@ -1,35 +1,16 @@
 @import '../colors';
 
-$lightblue: #0FA0CE;
-$lighterblue: lighten(#0FA0CE, 20%);
-$purps: #9b0fce;
-
-div {
-  color: $lighterblue;
-}
-
-button {
-  color: $lighterblue;
-  border-color: $lightblue;
-  transition: background ease-in-out .2s;
-
-  &:hover {
-    background: $purps;
-    color: $lighterblue;
-    transition: background ease-in-out .2s;
-  }
-}
-
-.template{
+.template {
   border: 1px solid #eee;
   margin: 1.5rem 0;
   padding: 1.5rem;
 }
 
-.template-title{
+.template-title {
   border-bottom: 1px solid #eee;
-  color: $indigo5;
+  padding: 0.5rem;
   font-weight: bold;
+  color: $indigo5;
 }
 
 .template-body{

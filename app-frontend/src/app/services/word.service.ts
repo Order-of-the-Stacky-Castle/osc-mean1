@@ -40,20 +40,20 @@ export class WordService {
   //     }));
   // }
   //
-  // editPlay(play:Play){
-  //   let editUrl = `${this.playUrl}`; // Can be const
-  //   // returns the observable of http put request
-  //   return this.http.put(editUrl, play);
-  // }
-  //
-  // deletePlay(id:string):any{
-  //   // Delete the object by the id
-  //   let deleteUrl = `${this.playUrl}/${id}`; // Can be const
-  //   return this.http.delete(deleteUrl)
-  //     .pipe(map(res  => {
-  //       return res;
-  //     }));
-  // }
+  editWord(word:Word){
+    let editUrl = `${this.wordsUrl}`; // Can be const
+    // returns the observable of http put request
+    return this.http.put(editUrl, word);
+  }
+
+  deleteWord(id:string):any{
+    // Delete the object by the id
+    let deleteUrl = `${this.wordsUrl}/${id}`; // Can be const
+    return this.http.delete(deleteUrl)
+      .pipe(map(res  => {
+        return res;
+      }));
+  }
 
   // private handleError(error: any): Promise<any> {
   //   console.error('An error occurred', error);

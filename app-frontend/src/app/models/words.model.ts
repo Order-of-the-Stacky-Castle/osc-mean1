@@ -3,11 +3,13 @@ export class Word {
   type: string;
   subtype: string;
   word: string;
+  plural: boolean;
 
-  constructor(type, subtype, word){
-    this.type = type;
-    this.subtype = subtype;
-    this.word = word;
+  constructor(){
+    this.type = '';
+    this.subtype = '';
+    this.word = '';
+    this.plural = false;
   }
 }
 export default Word;

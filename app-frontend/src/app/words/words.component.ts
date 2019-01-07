@@ -10,8 +10,9 @@ import { Word } from '../models/words.model';
 export class WordsComponent implements OnInit {
   constructor(private wordService: WordService) {}
 
-  //  // Declaring the new todo Object and initilizing it
-  newWord: Word = new Word('default', 'default', 'word');
+  //  // Declaring the new Word Object and initilizing it
+  newWord: Word = new Word();
+  types = ['noun', 'verb', 'adjective', 'adverb'];
 
   //  // An Empty list for the visible Word list
   wordsList: Word[];
@@ -40,7 +41,7 @@ export class WordsComponent implements OnInit {
 
   ngOnInit() {
     this.wordService.getWords().subscribe(words => {
-      //  assign the todolist property to the proper http response
+      //  assign the Wordlist property to the proper http response
       this.wordsList = words.data.docs;
       console.log(words);
     });
@@ -48,7 +49,7 @@ export class WordsComponent implements OnInit {
 
   getAll() {
     this.wordService.getWords().subscribe(words => {
-      // assign the todolist property to the proper http response
+      // assign the Wordlist property to the proper http response
       this.wordsList = words.data.docs;
       console.log(words);
     });
@@ -85,10 +86,28 @@ export class WordsComponent implements OnInit {
     });
   }
 
-  create() {
-    this.wordService.createWord(this.newWord).subscribe(res => {
+  create(e) {
+    let nWord = new Word();
+    nWord = e.form.value
+    this.wordService.createWord(nWord).subscribe(res => {
+      console.log("res data says... ", res.data)
       this.wordsList.push(res.data);
-      this.newWord = new Word('default', 'default', 'word');
+      // this.newWord = new Word();
+      // this.newWord.word = e.form.value.word
+      // let newWord = this.newWord;
+      // this.wordsList.push(newWord)
     });
   }
+
+  deleteWord(word: Word) {
+    this.wordService.deleteWord(word._id).subscribe(res => {
+      this.wordsList.splice(this.wordsList.indexOf(word), 1);
+    })
+  }
+
+  // submitWord(event, word: Word) {
+  //   if (event.keyCode == 13) {
+  //     this.editWord(word)
+  //   }
+  // }
 }

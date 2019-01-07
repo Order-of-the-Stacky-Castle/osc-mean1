@@ -10,6 +10,8 @@ import { Word } from '../models/words.model';
 export class WordsComponent implements OnInit {
   constructor(private wordService: WordService) {}
 
+  formVisible = false;
+
   //  // Declaring the new Word Object and initilizing it
   newWord: Word = new Word();
   types = ['noun', 'verb', 'adjective', 'adverb'];
@@ -105,9 +107,11 @@ export class WordsComponent implements OnInit {
     })
   }
 
-  // submitWord(event, word: Word) {
-  //   if (event.keyCode == 13) {
-  //     this.editWord(word)
-  //   }
-  // }
+  showForm(){
+    if(this.formVisible === true){
+      this.formVisible = false;
+    } else {
+      this.formVisible = true;
+    }
+  }
 }

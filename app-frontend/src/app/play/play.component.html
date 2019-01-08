@@ -13,7 +13,7 @@
     </div>
   <div *ngIf='showGetWordsForm'>
     <ul>
-      <li *ngFor="let blank of wordList" >
+      <li *ngFor="let blank of wordList; index as i" >
         {{blank.type}}<input ngModel="" type="text" class="bigballerword" placeholder="{{blank.type}}" name="{{blank.word}}" >
       </li>
     </ul>

@@ -19,11 +19,7 @@
   <div *ngIf='showGetWordsForm'>
     <ul>
       <li *ngFor="let blank of wordList; index as i" >
-<<<<<<< HEAD
-        {{blank.type}}<input ngModel="" type="text" class="bigballerword" placeholder="{{blank.type}}" name="word-{{i}}" >
-=======
         {{blank.type}}<input ngModel type="text" class="bigballerword" placeholder="{{blank.type}}" name="word-{{i}}" >
->>>>>>> dev
       </li>
     </ul>
     <button (click)="generateMadlib()">Generate - {{currentTemplate.title}}</button>

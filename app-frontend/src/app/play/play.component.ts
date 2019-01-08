@@ -20,7 +20,7 @@ export class PlayComponent implements OnInit {
   currentTemplate: Template;
   showGetWordsForm: boolean;
   showMadLib: boolean;
-  finishedStory = ""
+  finishedStory = "";
 
   ngOnInit() {
     this.playService.getTemplates().subscribe( templates => {
@@ -58,21 +58,21 @@ export class PlayComponent implements OnInit {
     let enteredWords = [];
     let formWords = p.form.value;
     Object.values(formWords).forEach(x => {
-      enteredWords.push(x)
+      enteredWords.push(x);
     })
-    console.log(enteredWords)
-    console.log("this is the template", this.currentTemplate.body)
+    console.log(enteredWords);
+    console.log("this is the template", this.currentTemplate.body);
     let i = 0;
     this.currentTemplate.body.forEach(x => {
       if(typeof x === 'object'){
-        this.finishedStory += enteredWords[i].toString()
+        let word = enteredWords[i];
+        this.finishedStory += word;
+        this.finishedStory += " ";
         i++
       } else {
-        this.finishedStory += x.toString()
+        this.finishedStory += x.toString();
       }
     })
-    console.log("finsiehd is", this.finishedStory)
-    
   }
 
   // generateMadlib(x){

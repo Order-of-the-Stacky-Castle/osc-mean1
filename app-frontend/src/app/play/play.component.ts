@@ -51,9 +51,14 @@ export class PlayComponent implements OnInit {
   }
 
   generateMadlib(p){
+    console.log("generateMadlib() called");
     this.showGetWordsForm = false;
     this.showMadLib = true;
-    let enteredWords = document.querySelectorAll('.bigballerword');
+    let enteredWords = [];
+    let formWords = p.form.value;
+    Object.values(formWords).forEach(x => {
+      enteredWords.push(x);
+    })
     console.log(this.wordList);
     console.log(enteredWords);
     console.log(p);

@@ -17,11 +17,23 @@
 
 <!-- <a routerLink="/words/new"><button>Create New Word</button></a> -->
 <button (click)="showForm()">new word</button>
-<form #w="ngForm" (ngSubmit)="create(w)">
-  <input type="text" ngModel placeholder="Word" name="word" id="name">
-  <select ngModel name="type" id="type">
+<form *ngIf="formVisible" (ngSubmit)="create(w)" #w="ngForm" >
+  <input 
+  type="text" 
+  [(ngModel)]="newWord.word"
+  placeholder="Word" 
+  name="word" 
+  id="name">
+  <select [(ngModel)]="newWord.type" name="type" id="type">
     <option *ngFor="let type of types" [value]="type">{{type}}</option>
   </select>
+  <input 
+  type="hidden" 
+  [(ngModel)]="newWord.subtype"
+  name="subtype"
+  id="subtype"
+  value={{newWord.type}}
+  >
   <button type="submit">submit</button>
 </form>
 
@@ -29,18 +41,14 @@
   <thead>
     <tr>
       <th>Word</th>
-      <th>Plural</th>
-      <th>Profane</th>
-      <th>Stats</th>
+      <th>Details</th>
+      <th>Delete?</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let word of wordsList">
-    <!-- <tr> -->
       <td>{{ word.word }}</td>
-      <td>{{ word.plural }}</td>
-      <td>{{ word.profane }}</td>
-      <td><button>stats</button></td>
+      <td><button>details</button></td>
       <td><button (click)="deleteWord(word)">delete</button></td>
     </tr>
   </tbody>

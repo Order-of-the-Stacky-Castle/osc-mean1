@@ -14,7 +14,8 @@ const httpOptions = {
 @Injectable()
 export class WordService {
 
-  private wordsUrl = 'http://localhost:3000/api/words';
+  apiUrl = 'http://localhost:3000'
+  wordsUrl = `${this.apiUrl}/api/words`;
 
   constructor(
     private http: HttpClient,
@@ -29,6 +30,8 @@ export class WordService {
   }
   createWord(word: Word): Observable<any> {
     // returns the observable of http post request
+    console.log('service has', word);
+
     return this.http.post(`${this.wordsUrl}`, word);
   }
   // getPlays(): Observable<Play[]>{

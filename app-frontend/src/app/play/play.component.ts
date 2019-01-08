@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import Template from '../models/template.model';
 import {PlayService} from '../services/play.service';
+import {FormControl, NgForm} from '@angular/forms';
 import { template } from '@angular/core/src/render3';
 
 @Component({
@@ -11,6 +12,7 @@ import { template } from '@angular/core/src/render3';
 export class PlayComponent implements OnInit {
 
   constructor(private playService: PlayService) { }
+  @ViewChild('play') playForm: NgForm;
 
   wordList: String[] = [];
   templatesList: Template[];
@@ -47,4 +49,14 @@ export class PlayComponent implements OnInit {
     this.showTemplateSelect = false;
     this.showGetWordsForm = true;
   }
+
+  generateMadlib(p){
+    this.showGetWordsForm = false;
+    this.showMadLib = true;
+    let enteredWords = document.querySelectorAll('.bigballerword');
+    console.log(this.wordList);
+    console.log(enteredWords);
+    console.log(p);
+  }
+
 }

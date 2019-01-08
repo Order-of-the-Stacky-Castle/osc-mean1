@@ -10,26 +10,25 @@ exports.getWords = async function (query, page, limit) {
   // We also want to set up options for the mongoose paginate
 
   var options = {
-    page,
-    limit
+    page, limit: 100
   }
-  //Let's create a Try and Catch function 
-  //that way we have some error handling set. 
+  //Let's create a Try and Catch function
+  //that way we have some error handling set.
   //Waiting for the promise
 
   try {
     var words = await Word.paginate(query, options)
 
-    //Once the Mongoose promise is returned 
-    //we're going to go ahead and return 
-    //the To Do List it has produced 
+    //Once the Mongoose promise is returned
+    //we're going to go ahead and return
+    //the To Do List it has produced
 
     return words;
 
   } catch (e) {
 
-    //If the try didn't work we're going to 
-    //go ahead and let the users know what kind of 
+    //If the try didn't work we're going to
+    //go ahead and let the users know what kind of
     //Error we have
 
     throw Error('Oh No! We got an error while Paginating our Words, so sorry!')
@@ -49,14 +48,14 @@ exports.createWord = async function (word) {
 
   try {
 
-    // Let's go ahead and save the word 
+    // Let's go ahead and save the word
 
     var savedWord = await newWord.save()
 
     return savedWord;
   } catch (e) {
 
-    //if we can't create a word we want to throw an error 
+    //if we can't create a word we want to throw an error
 
     throw Error("Error while Creating Word")
   }

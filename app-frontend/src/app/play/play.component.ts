@@ -12,7 +12,7 @@ export class PlayComponent implements OnInit {
 
   constructor(private playService: PlayService) { }
 
-  blanksList: String[] = [];
+  wordList: String[] = [];
   templatesList: Template[];
   showTemplateSelect: boolean;
   currentTemplate: Template;
@@ -37,10 +37,10 @@ export class PlayComponent implements OnInit {
     // console.log("current template is", this.currentTemplate);
     this.currentTemplate.body.forEach(x => {
       if(typeof x === 'object') {
-        this.blanksList.push(x);
+        this.wordList.push(x);
       }
     });
-    console.log(this.blanksList);
+    console.log(this.wordList);
     // for(let part of this.currentTemplate.body){
     //   console.log(part);
     // }

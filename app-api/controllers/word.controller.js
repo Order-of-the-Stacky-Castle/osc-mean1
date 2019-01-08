@@ -51,10 +51,8 @@ exports.createWord = async function (req, res, next) {
   var word = {
     word: req.body.word,
     type: req.body.type,
-    plural: req.body.plural,
-    profane: req.body.profane
+    subtype: req.body.subtype
   }
-
   try {
 
     // Calling the Service function 
@@ -97,8 +95,7 @@ exports.updateWord = async function (req, res, next) {
     id,
     word: req.body.word ? req.body.word : null,
     type: req.body.type ? req.body.type : null,
-    plural: req.body.plural ? req.body.plural : null,
-    profane: req.body.profane ? req.body.profane : null
+    subtype: req.body.subtype ? req.body.subtype : null
   }
 
   try {

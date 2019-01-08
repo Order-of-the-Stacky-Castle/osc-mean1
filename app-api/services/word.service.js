@@ -43,8 +43,7 @@ exports.createWord = async function (word) {
   var newWord = new Word({
     word: word.word,
     type: word.type,
-    plural: word.plural,
-    profane: word.profane
+    subtype: word.subtype
   })
 
   try {
@@ -52,7 +51,6 @@ exports.createWord = async function (word) {
     // Let's go ahead and save the word 
 
     var savedWord = await newWord.save()
-
     return savedWord;
   } catch (e) {
 
@@ -85,8 +83,7 @@ exports.updateWord = async function(word) {
 
   oldWord.word = word.word
   oldWord.type = word.type
-  oldWord.plural = word.plural
-  oldWord.profane = word.profane
+  oldWord.subtype = word.subtype
 
   console.log(oldWord)
 

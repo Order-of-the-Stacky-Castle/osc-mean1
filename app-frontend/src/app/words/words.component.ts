@@ -111,7 +111,7 @@ export class WordsComponent implements OnInit {
         this.wordsList.push(res.data)
         this.newWord = new Word()
       })
-  }//closes create function
+  }
 
   deleteWord(word: Word) {
     this.wordService.deleteWord(word._id).subscribe(res => {

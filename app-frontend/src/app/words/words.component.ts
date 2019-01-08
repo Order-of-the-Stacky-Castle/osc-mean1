@@ -103,23 +103,13 @@ export class WordsComponent implements OnInit {
   //   });
   // }
 
-
   create() {
     this.wordService.createWord(this.newWord)
       .subscribe((res) => {
         this.wordsList.push(this.newWord)
         this.newWord = new Word()
-      })
-  }//closes create function
-  // create() {
-  //   console.log('newwordis',this.newWord)
-  //   this.wordService.createWord(this.newWord)
-  //     .subscribe((res) => {
-  //       console.log("sponsy", res.data)
-  //       this.wordsList.push(res.data)
-  //       this.newWord = new Word()
-  //     })
-  // } // closes create function
+      });
+  }// closes create function
 
   deleteWord(word: Word) {
     this.wordService.deleteWord(word._id).subscribe(res => {

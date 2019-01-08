@@ -3,6 +3,7 @@ import Template from '../models/template.model';
 import {PlayService} from '../services/play.service';
 import {FormControl, NgForm} from '@angular/forms';
 import { template } from '@angular/core/src/render3';
+import { WordService } from '../services/word.service';
 
 @Component({
   selector: 'app-play',
@@ -11,7 +12,7 @@ import { template } from '@angular/core/src/render3';
 })
 export class PlayComponent implements OnInit {
 
-  constructor(private playService: PlayService) { }
+  constructor(private playService: PlayService, private wordService: WordService) { }
   @ViewChild('play') playForm: NgForm;
 
   wordList: String[] = [];
@@ -55,19 +56,26 @@ export class PlayComponent implements OnInit {
   generateMadlib(p){
     this.showGetWordsForm = false;
     this.showMadLib = true;
+    this.wordList.forEach(x => console.log(x.type))
     let enteredWords = [];
     let formWords = p.form.value;
     Object.values(formWords).forEach(x => {
       enteredWords.push(x);
     })
-    console.log(enteredWords);
-    console.log("this is the template", this.currentTemplate.body);
+    console.log("THESEWORDS", enteredWords);
+    // console.log("this is the template", this.currentTemplate.body);
     let i = 0;
     this.currentTemplate.body.forEach(x => {
       if(typeof x === 'object'){
         let word = enteredWords[i];
+        console.log('looketme',word)
         this.finishedStory += word;
         this.finishedStory += " ";
+        this.wordService.createWord(word)
+          .subscribe((res) => {
+            // this.wordsList.push(this.newWord)
+            // this.newWord = new Word()
+          });
         i++
       } else {
         this.finishedStory += x.toString();
@@ -78,5 +86,4 @@ export class PlayComponent implements OnInit {
   // generateMadlib(x){
   //   console.log("madlib says", x.form.value)
   // }
-
 }

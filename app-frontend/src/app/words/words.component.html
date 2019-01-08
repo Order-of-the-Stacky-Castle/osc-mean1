@@ -17,11 +17,23 @@
 
 <!-- <a routerLink="/words/new"><button>Create New Word</button></a> -->
 <button (click)="showForm()">new word</button>
-<form #w="ngForm" *ngIf="formVisible" (ngSubmit)="create(w)">
-  <input type="text" ngModel placeholder="Word" name="word" id="name">
-  <select ngModel name="type" id="type">
+<form *ngIf="formVisible" (ngSubmit)="create(w)" #w="ngForm" >
+  <input 
+  type="text" 
+  [(ngModel)]="newWord.word"
+  placeholder="Word" 
+  name="word" 
+  id="name">
+  <select [(ngModel)]="newWord.type" name="type" id="type">
     <option *ngFor="let type of types" [value]="type">{{type}}</option>
   </select>
+  <input 
+  type="hidden" 
+  [(ngModel)]="newWord.subtype"
+  name="subtype"
+  id="subtype"
+  value={{newWord.type}}
+  >
   <button type="submit">submit</button>
 </form>
 

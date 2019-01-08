@@ -4,13 +4,13 @@ import { Word } from '../models/words.model';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: "app-words",
-  templateUrl: "./words.component.html",
-  styleUrls: ["./words.component.scss"]
+  selector: 'app-words',
+  templateUrl: './words.component.html',
+  styleUrls: ['./words.component.scss']
 })
 export class WordsComponent implements OnInit {
   constructor(private wordService: WordService) {}
-  @ViewChild("w") wordForm: NgForm;
+  @ViewChild('w') wordForm: NgForm;
   formVisible = false;
 
   //  // Declaring the new Word Object and initilizing it
@@ -104,14 +104,12 @@ export class WordsComponent implements OnInit {
   // }
 
   create() {
-    console.log('newwordis',this.newWord)
     this.wordService.createWord(this.newWord)
       .subscribe((res) => {
-        console.log("sponsy", res.data)
-        this.wordsList.push(res.data)
+        this.wordsList.push(this.newWord)
         this.newWord = new Word()
-      })
-  }
+      });
+  }// closes create function
 
   deleteWord(word: Word) {
     this.wordService.deleteWord(word._id).subscribe(res => {

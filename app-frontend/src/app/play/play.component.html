@@ -12,7 +12,11 @@
     </ul>
     </div>
   <div *ngIf='showGetWordsForm'>
-    {{currentTemplate.body}}
+    <ul>
+      <li *ngFor="let blank of wordList" >
+        <input placeholder="{{blak.subtype}}">
+      </li>
+    </ul>
   </div>
 
 </ng-form>

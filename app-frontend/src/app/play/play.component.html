@@ -2,7 +2,7 @@
 <h2>Instructions</h2>
 <p>To play OSC Madlips, please select a madlib from the dropdown below, then click the play button.</p>
 
-<ng-form>
+<ng-form (ngSubmit)="generateMadlib(play)" #play="ngForm" >
   <div class="row"  *ngIf="showTemplateSelect">
     <p>Choose a title to begin: <p>
     <ul>
@@ -14,9 +14,12 @@
   <div *ngIf='showGetWordsForm'>
     <ul>
       <li *ngFor="let blank of wordList" >
-        <input placeholder="{{blak.subtype}}">
+        {{blank.type}}<input ngModel="" type="text" class="bigballerword" placeholder="{{blank.type}}" name="{{blank.word}}" >
       </li>
     </ul>
+    <button type="submit">Generate - {{currentTemplate.title}}</button>
   </div>
-
+  <div *ngIf="showMadLib">
+    <p>Madlib Here</p>
+  </div>
 </ng-form>

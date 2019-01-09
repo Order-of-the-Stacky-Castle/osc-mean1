@@ -3,3 +3,10 @@
 li.active-link a {
   color: $indigo5;
 }
+
+.navbar-list {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 9rem;
+  font-size: rem;
+}

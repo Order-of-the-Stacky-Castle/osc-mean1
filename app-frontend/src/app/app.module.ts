@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WordsComponent } from './words/words.component';
-import { WordFormComponent } from './word-form/word-form.component';
 import { TemplateComponent } from './template/template.component';
 import { StoryComponent } from './story/story.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +27,6 @@ import { WordDetailComponent } from './word-detail/word-detail.component';
     NavComponent,
     PageNotFoundComponent,
     WordsComponent,
-    WordFormComponent,
     TemplateComponent,
     StoryComponent,
     PlayComponent,

@@ -7,14 +7,14 @@
     <p>Choose a title to begin: <p>
     <ul>
       <li *ngFor="let template of templatesList" >
-        {{template.title}}<button (click)="getWords(template._id)"></button>
+        {{template.title}}<button (click)="getWords(template._id)">Play</button>
       </li>
     </ul>
     </div>
   <div *ngIf='showGetWordsForm'>
     <ul>
       <li *ngFor="let blank of wordList; index as i" >
-        {{blank.type}}<input ngModel type="text" class="bigballerword" placeholder="{{blank.type}}" name="word-{{i}}" >
+        {{blank.subType}}<input ngModel type="text" class="bigballerword" placeholder="{{blank.type}}" name="word-{{i}}" >
       </li>
     </ul>
     <button type="submit">Generate - {{currentTemplate.title}}</button>

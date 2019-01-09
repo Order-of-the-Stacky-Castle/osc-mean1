@@ -1,26 +1,26 @@
-// We need to be able to access the Service 
+// We need to be able to access the Service
 //that we just created so let's pull that in
 
 var WordService = require('../services/word.service.js');
 
-// Make sure to save the context of 
+// Make sure to save the context of
 //this module inside the _this variable
 
 _this = this
 
 exports.getWords = async function (req, res, next) {
 
-  // We're going to use ternary to check 
+  // We're going to use ternary to check
   //the existence of the query parameters
 
   var page = req.query.page ? req.query.page : 1
-  var limit = req.query.limit ? req.query.limit : 10;
+  var limit = req.query.limit ? req.query.limit : 100;
 
   try {
 
     var words = await WordService.getWords({}, page, limit)
 
-    // Return the words list with the appropriate 
+    // Return the words list with the appropriate
     //HTTP Status Code and Message.
 
     return res
@@ -33,7 +33,7 @@ exports.getWords = async function (req, res, next) {
 
   } catch (e) {
 
-    //Return an Error Response Message 
+    //Return an Error Response Message
     //with Code and the Error Message.
 
     return res.status(400).json({
@@ -51,13 +51,11 @@ exports.createWord = async function (req, res, next) {
   var word = {
     word: req.body.word,
     type: req.body.type,
-    plural: req.body.plural,
-    profane: req.body.profane
+    subtype: req.body.subtype
   }
-
   try {
 
-    // Calling the Service function 
+    // Calling the Service function
     //with the new object from the Request Body
 
     var createdWord = await WordService.createWord(word)
@@ -68,7 +66,7 @@ exports.createWord = async function (req, res, next) {
     })
   } catch (e) {
 
-    //Return an Error Response Message 
+    //Return an Error Response Message
     //with Code and the Error Message.
 
     return res.status(400).json({
@@ -97,8 +95,7 @@ exports.updateWord = async function (req, res, next) {
     id,
     word: req.body.word ? req.body.word : null,
     type: req.body.type ? req.body.type : null,
-    plural: req.body.plural ? req.body.plural : null,
-    profane: req.body.profane ? req.body.profane : null
+    subtype: req.body.subtype ? req.body.subtype : null
   }
 
   try {

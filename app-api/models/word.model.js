@@ -5,8 +5,7 @@ var mongoosePaginate = require('mongoose-paginate')
 var WordSchema = new mongoose.Schema({
     word: String,
     type: String,
-    plural: Boolean,
-    profane: Boolean
+    subtype: String
 })
 
 WordSchema.plugin(mongoosePaginate)

@@ -11,8 +11,13 @@ var bluebird = require('bluebird');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 var api = require('./routes/api.route');
-
 var app = express();
+
+// Database connections
+var config = require('./config');
+var db_conn = config.db_conn;
+var db_url = config.db_URL;
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,12 +31,12 @@ app.use('/api', api);
 
 //  ADDED CODE
 //  Test mongoose connection
-mongoose.connect('mongodb://127.0.0.1:27017/madlibs', { useNewUrlParser: true})
+mongoose.connect(`${db_conn}`, { useNewUrlParser: true})
 .then(() => {
-  console.log(`Successfully Connected to the Mongodb Database at URL :mongodb://127.0.0.1:27017/madlibs`)
+  console.log(`Successfully Connected to the Mongodb Database at URL :${db_url}`)
 })
 .catch(() => {
-  console.log('Error connecting to the Mongodb Database at URL :mongodb://127.0.0.1:27017/madlibs')
+  console.log(`Error connecting to the Mongodb Database at URL :${db_url}`)
 })
 // CORS Usage
 app.use(function(req, res, next) {

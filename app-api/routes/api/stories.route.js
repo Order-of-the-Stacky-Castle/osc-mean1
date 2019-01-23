@@ -12,6 +12,8 @@ var StoryController = require('../../controllers/story.controller.js');
 // router.get('/', StoryController.getStory)
 router.get('/', StoryController.getStories)
 
+router.get('/:id', StoryController.getStoryById)
+
 router.post('/', StoryController.createStory)
 
 router.put('/:id', StoryController.updateStory)

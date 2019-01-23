@@ -1,16 +1,16 @@
-// We need to be able to access the Service 
+// We need to be able to access the Service
 //that we just created so let's pull that in
 
 var TemplateService = require('../services/template.service.js');
 
-// Make sure to save the context of 
+// Make sure to save the context of
 //this module inside the _this variable
 
 _this = this
 
 exports.getTemplates = async function (req, res, next) {
 
-  // We're going to use ternary to check 
+  // We're going to use ternary to check
   //the existence of the query parameters
 
   var page = req.query.page ? req.query.page : 1
@@ -20,7 +20,7 @@ exports.getTemplates = async function (req, res, next) {
 
     var templates = await TemplateService.getTemplates({}, page, limit)
 
-    // Return the Template list with the appropriate 
+    // Return the Template list with the appropriate
     //HTTP Status Code and Message.
 
     return res
@@ -33,7 +33,7 @@ exports.getTemplates = async function (req, res, next) {
 
   } catch (e) {
 
-    //Return an Error Response Message 
+    //Return an Error Response Message
     //with Code and the Error Message.
 
     return res.status(400).json({
@@ -41,6 +41,26 @@ exports.getTemplates = async function (req, res, next) {
       message: e.message
     });
 
+  }
+}
+
+exports.getTemplateById = async function (req, res, next){
+  let id = req.params.id;
+
+  try {
+    let found = await TemplateService.getTemplate(id);
+    return res
+        .status(200)
+        .json({
+          status: 200,
+          data: found,
+          message: `Retrieved Template with _id: ${id}`
+    });
+  } catch (e) {
+    return res.status(400).json({
+      status: 400,
+      message: e.message
+    })
   }
 }
 
@@ -55,7 +75,7 @@ exports.createTemplate = async function (req, res, next) {
 
   try {
 
-    // Calling the Service function 
+    // Calling the Service function
     //with the new object from the Request Body
 
     var createdTemplate = await TemplateService.createTemplate(template)
@@ -66,7 +86,7 @@ exports.createTemplate = async function (req, res, next) {
     })
   } catch (e) {
 
-    //Return an Error Response Message 
+    //Return an Error Response Message
     //with Code and the Error Message.
 
     return res.status(400).json({

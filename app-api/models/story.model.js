@@ -5,7 +5,6 @@ var mongoosePaginate = require('mongoose-paginate')
 var StorySchema = new mongoose.Schema({
     template_id: String,
     words: Array,
-     __v: false
 });
 
 StorySchema.plugin(mongoosePaginate)

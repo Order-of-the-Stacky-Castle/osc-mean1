@@ -11,13 +11,17 @@ var bluebird = require('bluebird');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 var api = require('./routes/api.route');
+
+// Create express instance for app
 var app = express();
+// view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
 // Database connections
 var config = require('./config');
 var db_conn = config.db_conn;
 var db_url = config.db_URL;
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,13 +35,16 @@ app.use('/api', api);
 
 //  ADDED CODE
 //  Test mongoose connection
-mongoose.connect(`${db_conn}`, { useNewUrlParser: true})
+mongoose.connect(
+    process.env.MONGODB_URI || `${db_conn}`,
+    { useNewUrlParser: true})
 .then(() => {
   console.log(`Successfully Connected to the Mongodb Database at URL :${db_url}`)
 })
 .catch(() => {
   console.log(`Error connecting to the Mongodb Database at URL :${db_url}`)
 })
+
 // CORS Usage
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
@@ -61,6 +68,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  // res.body.textContent = err.message;
   res.render('error');
 });
 

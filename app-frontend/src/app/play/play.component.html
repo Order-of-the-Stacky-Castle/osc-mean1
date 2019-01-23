@@ -1,0 +1,25 @@
+<p>Welcome!</p>
+<h2>Instructions</h2>
+<p>To play OSC Madlips, please select a madlib from the dropdown below, then click the play button.</p>
+
+<form (ngSubmit)="generateMadlib(play)" #play="ngForm" >
+  <div class="row holderino"  *ngIf="showTemplateSelect">
+    <p>Choose a title to begin: <p>
+    <ul>
+      <li *ngFor="let template of templatesList" >
+        <div class="seven columns">{{template.title}}</div><button class="four columns" (click)="getWords(template._id)">Play</button>
+      </li>
+    </ul>
+    </div>
+  <div *ngIf='showGetWordsForm'>
+    <ul>
+      <li *ngFor="let blank of wordList; index as i" >
+        {{blank.subType}}<input ngModel type="text" class="bigballerword" placeholder="{{blank.type}}" name="word-{{i}}" >
+      </li>
+    </ul>
+    <button type="submit">Generate - {{currentTemplate.title}}</button>
+  </div>
+  <div *ngIf="showMadLib">
+    {{finishedStory}}
+  </div>
+</form>
